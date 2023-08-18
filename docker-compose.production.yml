@@ -13,19 +13,19 @@ services:
     env_file: .env
   backend:
     env_file: .env
-    build: ./backend/
+    image: killmonger0/kittygram_backend
     depends_on:
       - db
     volumes:
       - static:/backend_static
       - media:/app/media
   frontend:
-    build: ./frontend/
+    image: killmonger0/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    build: ./nginx/
+    image: killmonger0/kittygram_gateway
     depends_on:
       - backend
     ports:
